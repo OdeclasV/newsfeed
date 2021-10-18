@@ -1,42 +1,54 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			articleList: [],
+			readArticles: [],
+			sections: []
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
+			getArticles: () => {
+				// get articles from NYT
+				fetch("https://api.nytimes.com/svc/topstories/v2/world.json?api-key=INTqA41gX6N3Pi01pKA5hqCUiQe7tJxK")
+					.then(response => {
+						if (!response.ok) {
+							throw new Error(response.statusText);
+						}
+						return response.json();
+					})
+					.then(data => {
+						setStore({ articleList: data.results });
+						return data.results;
+					})
+					.then(results => {
+						let subsections = results.map((result, index) => {
+							// some subsections are empty coming from the API
+							if (result.subsection === "") {
+								result.subsection = "other";
+							}
+							return result.subsection;
+						});
+						let uniqueSubsections = subsections.reduce((previousValue, currentValue) => {
+							if (previousValue.indexOf(currentValue) === -1) {
+								previousValue.push(currentValue);
+							}
+							return previousValue;
+						}, []);
+						setStore({ sections: uniqueSubsections });
+					});
 			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
-			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
 
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
+			addReadArticle: nameOfArticle => {
+				let { readArticles } = getStore();
+				readArticles.includes(nameOfArticle) ? readArticles : readArticles.push(nameOfArticle);
+				setStore({ readArticles: readArticles });
+			},
+
+			deleteArticle: articleToDelete => {
+				let newArticles = getStore().articleList.filter(article => {
+					return article !== articleToDelete;
 				});
 
-				//reset the global store
-				setStore({ demo: demo });
+				setStore({ articleList: newArticles });
 			}
 		}
 	};
