@@ -10,7 +10,7 @@ export const Sections = () => {
 			<ul className="subsections" style={{ display: "inline-flex", listStyle: "none" }}>
 				{store.sections.sort().map((section, index) => {
 					return (
-						<li className="subsection-item p-1 m-3" key={section}>
+						<li className="subsection-item p-1 m-3" key={index}>
 							{section}
 						</li>
 					);

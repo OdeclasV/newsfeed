@@ -17,6 +17,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.then(data => {
 						setStore({ articleList: data.results });
+						console.log(data.results);
 						return data.results;
 					})
 					.then(results => {
