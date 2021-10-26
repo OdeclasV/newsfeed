@@ -25,7 +25,11 @@ export const Sections = props => {
 			<ul className="subsections" style={{ display: "inline-flex", listStyle: "none" }}>
 				{store.sections.sort().map((section, index) => {
 					return (
-						<li className="subsection-item p-1 m-3" key={index} onClick={() => showArticles(section)}>
+						<li
+							className="subsection-item p-1 m-3"
+							key={index}
+							style={props.theme}
+							onClick={() => showArticles(section)}>
 							{section}
 						</li>
 					);
@@ -37,5 +41,6 @@ export const Sections = props => {
 
 Sections.propTypes = {
 	history: PropTypes.object,
-	section: PropTypes.string
+	section: PropTypes.string,
+	theme: PropTypes.object
 };

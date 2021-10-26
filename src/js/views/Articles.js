@@ -4,24 +4,26 @@ import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
 
 import { ArticleCard } from "../component/ArticleCard";
+import { Sections } from "../component/Sections";
 
 export const Articles = props => {
 	const { store, actions } = useContext(Context);
 
-	console.log(props);
-
 	return (
-		<div className="articles d-flex flex-wrap">
-			{store.articleList.map((article, index) => {
-				return (
-					<ArticleCard
-						key={index}
-						article={article}
-						style={props.theme.color === "black" ? darkThemeStyle : defaultTheme}
-					/>
-				);
-			})}
-		</div>
+		<>
+			<Sections theme={props.theme.color === "black" ? { color: "white" } : { color: "black" }} />
+			<div className="articles d-flex flex-wrap">
+				{store.articleList.map((article, index) => {
+					return (
+						<ArticleCard
+							key={index}
+							article={article}
+							style={props.theme.color === "black" ? darkThemeStyle : defaultTheme}
+						/>
+					);
+				})}
+			</div>
+		</>
 	);
 };
 

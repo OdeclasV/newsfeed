@@ -25,7 +25,6 @@ export const Home = () => {
 				}}>
 				Switch to Dark Theme
 			</button>
-			<Sections />
 			<Articles theme={darkTheme ? darkThemeArticles : defaultThemeArticles} />
 		</div>
 	);
