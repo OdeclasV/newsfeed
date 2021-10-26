@@ -6,9 +6,11 @@ import PropTypes from "prop-types";
 export const ArticleCard = props => {
 	const { store, actions } = useContext(Context);
 
+	//console.log(props);
+
 	return (
 		<>
-			<div className="card article-card col-md-3 m-2">
+			<div className="card article-card col-md-3 m-2" style={props.style}>
 				<img className="card-img-top" src={props.article.multimedia[0].url} alt="Card image cap" />
 				<div className="card-body">
 					<h5 className="card-title">{props.article.title}</h5>
@@ -31,5 +33,6 @@ export const ArticleCard = props => {
 };
 
 ArticleCard.protoTypes = {
-	article: PropTypes.object
+	article: PropTypes.object,
+	style: PropTypes.object
 };
