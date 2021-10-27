@@ -4,7 +4,7 @@ import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
 
 import { ArticleCard } from "../component/ArticleCard";
-import { Sections } from "../component/Sections";
+import { Sections } from "./Sections";
 
 export const Articles = props => {
 	const { store, actions } = useContext(Context);
