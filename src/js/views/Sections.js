@@ -1,5 +1,4 @@
 import React, { useEffect, useContext, useState } from "react";
-import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
 import { ArticleCard } from "../component/ArticleCard";
@@ -62,35 +61,3 @@ const defaultTheme = {
 	color: "black",
 	background: "white"
 };
-
-// <div className="articles d-flex flex-wrap">
-// {store.articleList.map((article, index) => {
-// 	return (
-// 		<ArticleCard
-// 			key={index}
-// 			article={article}
-// 			style={props.theme.color === "black" ? darkThemeStyle : defaultTheme}
-// 		/>
-// 	);
-// })}
-// </div>
-
-// {articles.map((article, index) => {
-// 	if (article.subsection == subsection) {
-// 		return (
-// 			<ArticleCard
-// 				key={index}
-// 				article={article}
-// 				style={props.theme.color === "black" ? darkThemeStyle : defaultTheme}
-// 			/>
-// 		);
-// 	} else if (subsection == "all" || subsection == null) {
-// 		return (
-// 			<ArticleCard
-// 				key={index}
-// 				article={article}
-// 				style={props.theme.color === "black" ? darkThemeStyle : defaultTheme}
-// 			/>
-// 		);
-// 	}
-// })}
