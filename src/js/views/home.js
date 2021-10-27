@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ArticleCard } from "../component/ArticleCard";
 import { ReadArticles } from "../component/ReadArticles";
 import { Articles } from "./Articles";
-import { Sections } from "../component/Sections";
+import { Sections } from "./Sections";
 import "../../styles/home.scss";
 import { DarkModeButton } from "../component/DarkModeButton";
 
@@ -25,8 +25,7 @@ export const Home = () => {
 				}}>
 				Switch to Dark Theme
 			</button>
-			<Sections />
-			<Articles theme={darkTheme ? darkThemeArticles : defaultThemeArticles} />
+			<Sections theme={darkTheme ? darkThemeArticles : defaultThemeArticles} />
 		</div>
 	);
 };

@@ -16,6 +16,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return response.json();
 					})
 					.then(data => {
+						// set articleList to all articles from APi
 						setStore({ articleList: data.results });
 						console.log("fetched articles from NYT", data.results);
 						return data.results;
@@ -32,9 +33,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 							if (previousValue.indexOf(currentValue) === -1) {
 								previousValue.push(currentValue);
 							}
-							return previousValue;
+							// sort values before adding them to sections
+							return previousValue.sort();
 						}, []);
-						setStore({ sections: uniqueSubsections });
+						// set sections to filtered values
+						// hardcoding 'all' to make sure that's always first in the list
+						setStore({ sections: ["all", ...uniqueSubsections] });
 					});
 			},
 

@@ -6,8 +6,6 @@ import PropTypes from "prop-types";
 export const ArticleCard = props => {
 	const { store, actions } = useContext(Context);
 
-	//console.log(props);
-
 	return (
 		<>
 			<div className="card article-card col-md-3 m-2" style={props.style}>
